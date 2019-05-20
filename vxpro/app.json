@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/alogin/alogin",
+    "pages/aregister/aregister",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/index2/index2",
+    "pages/index3/index3",
+    "pages/index4/index4"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "袋鼠钱袋",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8A8C8E",
+    "selectedColor": "#FFCC33",
+    "backgroundColor": "#F2EADA",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "发现任务",
+        "iconPath": "icons/u33.png",
+        "selectedIconPath": "icons/u33_selected.png"
+      },
+      {
+        "pagePath": "pages/index2/index2",
+        "text": "发布任务",
+        "iconPath": "icons/u36.png",
+        "selectedIconPath": "icons/u36_selected.png"
+      },
+      {
+        "pagePath": "pages/index3/index3",
+        "text": "进行中",
+        "iconPath": "icons/u39.png",
+        "selectedIconPath": "icons/u39_selected.png"
+      },
+      {
+        "pagePath": "pages/index4/index4",
+        "text": "我的信息",
+        "iconPath": "icons/u42.png",
+        "selectedIconPath": "icons/u42_selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

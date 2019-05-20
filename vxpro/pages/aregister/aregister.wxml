@@ -1,0 +1,91 @@
+<view class="container"> 
+
+ <view class="login-icon"> 
+
+ <image class="login-img" src="../../icons/u21.png"></image> 
+
+ </view> 
+
+ <view class="login-from"> 
+
+
+ <!--用户名-->
+
+  <view class="inputView"> 
+
+  <image class="keyImage" src="../../icons/u21.png"></image> 
+
+  <label class="loginLab">用户名</label> 
+
+  <input class="inputText"  placeholder="请输入用户名" bindinput="nameInput" /> 
+
+ </view>  
+
+ <view class="line"></view> 
+
+
+  <!--性别-->
+
+  <view class="inputView"> 
+
+  <image class="keyImage" src="../../icons/ico-sex.png"></image> 
+
+  <label class="loginLab">性别</label> 
+
+  <input class="inputText"  placeholder="请输入性别" bindinput="sexInput" /> 
+
+ </view>  
+
+ <view class="line"></view> 
+
+
+ <!--手机号-->
+
+ <view class="inputView"> 
+
+  <image class="nameImage" src="../../icons/u1.png"></image> 
+
+  <label class="loginLab">手机号</label> 
+
+  <input class="inputText" placeholder="请输入手机号" bindinput="phoneInput" /> 
+
+ </view> 
+
+ <view class="line"></view> 
+
+  
+
+ <!--密码-->
+
+ <view class="inputView"> 
+
+  <image class="keyImage" src="../../icons/u2.png"></image> 
+
+  <label class="loginLab">密码</label> 
+
+  <input class="inputText" password="true" placeholder="请输入密码" bindinput="passwordInput" /> 
+
+ </view> 
+
+
+
+ 
+
+
+  
+
+ <!--按钮-->
+
+ <view class="loginBtnView"> 
+
+  <button class="loginBtn"  size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="comfirmreg">确认</button> 
+
+ </view> 
+
+ <view>
+ <text class="tips">注意：用户名可使用中文，英文，数字和下划线，不以数字开头，长度6~14个字符，密码可使用字母，数字，或特殊符号（包括!@#$%^&*），必须至少包含两种类型，长度8~16个字符</text>
+ </view>
+
+ </view> 
+
+</view>
