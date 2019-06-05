@@ -1,2 +1,58 @@
-<!--pages/index4/index4.wxml-->
-<text>pages/index4/index4.wxml</text>
+<view class="container"> 
+
+
+<view class = "myself">
+
+ <!--个人信息-->
+
+ <view class="myInfo"> 
+
+  <view class="myIcon" >{{userInfo.user_icon}}</view>
+
+  <text class="myName1">{{userInfo.user_name}}</text> 
+
+  <navigator url="../../pages/index5" class = "navi">个人信息<view class='arrow'></view></navigator>
+
+ </view> 
+
+
+
+  
+
+ <!--账户管理-->
+
+ <view class="myAccount"> 
+
+  <text class="myName2">余额</text> 
+
+  <text class="myName1">{{userInfo.user_properties}}元</text> 
+
+
+  <navigator url="../../pages/index6" class = "navi">账户管理<view class='arrow'></view></navigator>
+
+ </view> 
+
+  
+
+ <!--任务管理-->
+
+ <view class="myAccount"> 
+
+    <text class="myName2">已完成</text> 
+
+  <text class="myName1">{{userInfo.user_completed_receive_task_count}}个任务</text> 
+
+
+  <navigator url="../../pages/index7" class = "navi">任务管理<view class='arrow'></view></navigator>
+
+
+
+</view>
+
+
+<!--退出登录-->
+<button class = "quitAccount" bindtap = "logout">退出登录</button>
+
+
+</view>
+</view>
