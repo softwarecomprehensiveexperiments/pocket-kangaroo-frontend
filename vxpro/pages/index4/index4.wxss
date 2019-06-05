@@ -83,6 +83,8 @@ margin-top:7px;
 
 .navi{
 
+  display: flex;
+
   flex: 0 0 100px;
 
   margin-top: 40px;
