@@ -1,13 +1,21 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+  <view  class="orderDetails" wx:for="{{data}}" wx:key=" ">
+    <view class="orderListTitle">
+      <text class="userName" style='color:#3B3B3B;'>{{item.name}}</text>
+      <text style='color:#4E4E4E;'>发布的</text>
+      <text class="taskType" >{{item.status}}</text>
+      <text style='color:#4E4E4E;'>任务</text>
+      <text class='orderStatus'>待接收</text>
+    </view>
+    <view class="productInfo" bindtap='discrib' data-task='{{item}}'>
+      <view class="productTitle">预定时间: {{item.time}}</view>
+      <text class="productPrice">任务类型：{{item.status}}</text>
+    </view>
+    <view class="productCount">
+        <view class="buttontype">
+          <button bindtap='jieshou' class='td' data-taskid='{{item.taskid}}'><text>接受任务</text></button>
+        </view>
+        <text>报酬：￥{{item.money}}</text>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
+</scroll-view>
