@@ -1,3 +1,84 @@
-<view>
-  hello world || {{msg}}
+
+<!-- 切换栏 -->
+<view class="swiper-tab">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
 </view>
+ 
+<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
+    <!-- 接收 -->
+    <swiper-item>
+      <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+        <view  class="orderDetails" wx:for="{{alreadyOrder}}" wx:key=" ">
+          <view class="orderListTitle">
+            <text class="userName" style='color:#3B3B3B;'>{{item.name}}</text>
+            <text style='color:#4E4E4E;'>发布的</text>
+            <text class="taskType" >{{item.status}}</text>
+            <text style='color:#4E4E4E;'>任务</text>
+            <text class="orderStatus" >{{item.state}}</text>
+          </view>
+          <view style='height: 1px; background:#eaeaea;'></view>
+          <view class = 'tbody' >
+            <view class = 'main'bindtap='discrib' data-taskid='{{item.taskid}}'>
+              <view class="productInfo" bindtap='discrib' data-task='{{item}}'>
+                <view class="title">{{item.title}}</view>
+                <text class="des">{{item.short_description}}</text>
+              </view>
+              <view class ='count'>
+                <view class= "ca">56</view>
+                <view class="divi">/</view>
+                <view class='cb'>60</view>
+              </view>
+            </view>
+            <view class="productCount">
+                <view class="buttontype">
+                  <button bindtap='undo'  class='td, forgiveBtn' data-taskid='{{item.taskid}}'><text style='font-size:38rpx;'>放弃</text></button>
+                  <button bindtap='done' class='td, checkBtn' data-taskid='{{item.taskid}}'><text style='font-size:38rpx;'>确认完成</text></button>
+                </view>
+                <text>报酬：</text>
+                <text style='color:#FFCC33'>￥{{item.money}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+  </swiper-item>
+
+  <!-- 发布 -->
+ <swiper-item>
+      <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+        <view  class="orderDetails" wx:for="{{alreadyOrder}}" wx:key=" ">
+          <view class="orderListTitle">
+            <text class="userName" style='color:#3B3B3B;'>{{item.name}}</text>
+            <text style='color:#4E4E4E;'>发布的</text>
+            <text class="taskType" >{{item.status}}</text>
+            <text style='color:#4E4E4E;'>任务</text>
+            <text class="orderStatus" >{{item.state}}</text>
+          </view>
+          <view style='height: 1px; background:#eaeaea;'></view>
+          <view class='tbody'>
+            <view class = 'main' bindtap='discrib' data-task='{{item}}'>
+              <view class="productInfo" bindtap='discrib' data-task='{{item}}'>
+                <view class="title">{{item.title}}</view>
+                <text class="des">{{item.short_description}}</text>
+              </view>
+              <view class ='count'>
+                <view class= "ca">56</view>
+                <view class="divi">/</view>
+                <view class='cb'>60</view>
+              </view>
+            </view>
+
+          <view class="productCount">
+              <view class="buttontype">
+                <button bindtap='fabundo'  class='td, forgiveBtn'data-taskid='{{item.taskid}}'><text style='font-size:38rpx;'>放弃发布</text></button>
+                <button bindtap='fabudone' class='td, checkBtn' data-taskid='{{item.taskid}}'><text style='font-size:38rpx;'>确认完成</text></button>
+              </view>
+              <text>报酬：</text>
+              <text style='color:red'>-￥{{item.money}}</text>
+          </view>
+        </view>
+        </view>
+      </scroll-view>
+  </swiper-item>
+</swiper>

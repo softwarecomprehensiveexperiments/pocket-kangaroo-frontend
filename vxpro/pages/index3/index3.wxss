@@ -1,1 +1,214 @@
-/* pages/index3/index3.wxss */
+/*切换栏*/
+.swiper-tab {
+  background: #f2eada;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom:1rpx solid whitesmoke;
+  color: #281f1d
+
+}
+ 
+.swiper-tab-list {
+  margin: 0 45px;
+  padding-bottom: 7rpx;
+  font-size: 17px;
+  align-content: center;
+}
+ 
+.on {
+  border-bottom:2rpx solid #FFCC33;
+}
+ 
+.navTopList {
+  display: flex;
+  width: 100%;
+  height: 70rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #BEBEBE	;
+  margin-top:5rpx;
+}
+ 
+.navTopList .order-info {
+  text-align: center;
+}
+ 
+.navTopList .order-info view {
+  width: 56rpx;
+  height: 56rpx;
+  margin-left: 31rpx;
+}
+ 
+.navTopList .order-info text {
+  font-size: 34rpx;
+}
+ 
+.navTopList .order-info text.active {
+  color: #ff6662;
+}
+ 
+.navTopList .ywc,.navTopList .dfk,.navTopList .yqx {
+  flex: 1;
+}
+ 
+ 
+/*订单列表*/
+.orderDetails {
+  border-radius: 25rpx 25rpx 25rpx 25rpx;
+  background: #fff;
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+}
+ 
+.hot-box {
+  background: #f6f6f6;
+}
+.orderListTitle {
+  height: 100rpx;
+  padding: 13rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  line-height: 100rpx;
+}
+ 
+.orderListTitle .userName {
+  margin-left: 5rpx;
+  padding-right: 14rpx;
+  padding-left: 14rpx;
+  font-weight: 650;
+  font-size: 37rpx;
+}
+
+.orderListTitle .taskType {
+  padding-right: 14rpx;
+  padding-left: 14rpx;
+  font-weight: 650;
+  font-size: 37rpx;
+}
+ 
+.orderListTitle .orderStatus {
+  float: right;
+  margin-right: 20rpx;
+  color: #38a52c;
+  font-size: 34rpx;
+}
+ 
+.orderListDetails {
+  display: flex;
+  height: 200rpx;
+}
+ 
+.orderListDetails .productImg {
+  flex: 1;
+  height:180rpx;
+  width:120rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+ 
+.orderListDetails .productImg image {
+  width: 100rpx;
+  height: 90%;
+}
+ 
+.orderListDetails .productInfo {
+  flex: 4;
+  margin: 40rpx 10rpx 20rpx 30rpx;
+  font-size:15rpx;
+ 
+}
+ 
+.orderListDetails .productInfo .productTitle {
+  font-size:15rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom:10rpx;
+}
+ 
+.productCount {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+ 
+.productCount>view {
+  display: flex;
+  float: right;
+  margin-right: 30rpx;
+
+}
+.buttontype{
+  display: flex;
+  width: 60%;
+  height: 85%;
+  align-items: buttom;
+  justify-content:center;
+}
+
+.productInfo {
+  padding-bottom: 15rpx;   
+}
+
+.forgiveBtn {
+  margin-right: -30rpx;
+}
+
+.checkBtn {
+  background: #Ffd343;
+  font-weight: 410;
+  margin-right: -10rpx;
+}
+
+.td {
+display: flex;
+align-items: center;
+padding: 17rpx;
+}
+
+.td::after{
+border: none;
+}
+
+.tbody {
+  padding: 15rpx;
+  padding-bottom: 8rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;  
+}
+
+.main {
+  display: flex;
+}
+.title {
+  font-size: 23px;
+}
+.des {
+  font-size: 14px;
+  color: #868386;
+}
+
+.ca {
+  font-size: 30px;
+  color: #379b2c;
+}
+
+.cb {
+  font-size: 30px;
+  color: #3464bd;
+}
+.divi {
+  font-size: 30px;
+  font-weight: 400;
+}
+.count {
+  display: flex;
+  float: right;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 30rpx;
+}
