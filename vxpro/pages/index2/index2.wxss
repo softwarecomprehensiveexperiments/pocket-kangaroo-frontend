@@ -13,8 +13,8 @@ page{
   position: fixed;
   width: 80rpx;
   height: 80rpx;
-  right: 20rpx;
-  top:20rpx;
+
+
 }
 
 #title{
@@ -156,3 +156,111 @@ page{
   width: 50%;
   margin-bottom: 20rpx;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.swiper-tab {
+  background: #f2eada;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom:1rpx solid whitesmoke;
+  color: #281f1d
+
+}
+ 
+.swiper-tab-list {
+  margin: 0 45px;
+  padding-bottom: 7rpx;
+  font-size: 17px;
+  align-content: center;
+}
+ 
+.on {
+  border-bottom:2rpx solid #FFCC33;
+}
+ 
+.navTopList {
+  display: flex;
+  width: 100%;
+  height: 70rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #BEBEBE	;
+  margin-top:5rpx;
+}
+ 
+.navTopList .order-info {
+  text-align: center;
+}
+ 
+.navTopList .order-info view {
+  width: 56rpx;
+  height: 56rpx;
+  margin-left: 31rpx;
+}
+ 
+.navTopList .order-info text {
+  font-size: 34rpx;
+}
+ 
+.navTopList .order-info text.active {
+  color: #ff6662;
+}
+ 
+.navTopList .ywc,.navTopList .dfk,.navTopList .yqx {
+  flex: 1;
+}
+
+
+
+
+
+
+
+
+textarea {
+  width: 700rpx;
+  height: 500rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+ 
+.textarea-bg {
+  background-color: #999;
+  padding: 10rpx;
+  font-size: 32rpx;
+}
+ 
+.title-bg {
+  font-size: 32rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+  color: #43c729;
+}
+
+
+
+
+
+
+
+
+
+
+
+
