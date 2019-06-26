@@ -1,66 +1,71 @@
-// pages/index4/index4.js
+
 Page({
+data: {
+  user_id:"",
+  user_icon: ""
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+},
 
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    var that = this
+    wx.getStorage({
+      key: 'userid',
+      success: function(res) {
+        that.setData({
+          user_id: res.data
+        })
+        console.log(res.data)
+      },
+    })
+    wx.getStorage({
+      key: 'usericon',
+      success: function (res) {
+        that.setData({
+          user_icon: res.data
+        })
+        console.log(res.data)
+      },
+    })
+    wx.getStorage({
+      key: 'usermoney',
+      success: function (res) {
+        that.setData({
+          user_properties: res.data
+        })
+        console.log(res.data)
+      },
+    })
+    wx.getStorage({
+      key: 'usertask',
+      success: function (res) {
+        that.setData({
+          user_completed_receive_task_count: res.data
+        })
+        console.log(res.data)
+      },
+    })
   },
+   
+logout : function () {
+  wx.navigateTo({
+    url: '../alogin/alogin',
+  })
+},
+userinfo:function(){
+  wx.navigateTo({
+    url: '../index5/index5',
+  })
+},
+usermoney: function () {
+  wx.navigateTo({
+    url: '../index6/index6',
+  })
+},
+usertask: function () {
+  wx.navigateTo({
+    url: '../index7/index7',
+   })
+}
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

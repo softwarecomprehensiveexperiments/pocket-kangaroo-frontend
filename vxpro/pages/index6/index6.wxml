@@ -1,0 +1,2 @@
+<view class="yue"><text class="yue2">余额  {{user_properties}}  元</text></view>
+<botton class="chongzhi" bindtap="chongzhi">充值</botton>

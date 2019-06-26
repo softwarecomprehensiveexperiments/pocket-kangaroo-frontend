@@ -14,10 +14,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { 
+  onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://118.89.117.52/transaction/short/receive_doing',
+      url: 'http://118.89.117.52/transaction/short/receive_completed',
       method: 'GET',
       header: {
         //'authorization': wx.getStorageSync("token")
@@ -43,7 +43,7 @@ Page({
               title: res.data.description,
               icon: 'loading',
               duration: 500
-            
+
             })
             console.log(res.data.description)
           }
@@ -60,7 +60,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://118.89.117.52/task/short/release_doing',
+      url: 'http://118.89.117.52/task/short/release_completed',
       method: 'GET',
       header: {
         //'authorization': wx.getStorageSync("token")
@@ -163,7 +163,7 @@ Page({
   },
 
 
-  done:function(e){
+  done: function (e) {
     var that = this
     wx.showModal({
       title: '确定完成？',
@@ -173,7 +173,7 @@ Page({
           wx.request({
             url: 'http://118.89.117.52/transaction/' + e.target.dataset.taskid,
             method: 'PUT',
-            data: {committion:'asdasd'},
+            data: { committion: 'asdasd' },
             header: {
               //'authorization': wx.getStorageSync("token")
               'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
@@ -216,7 +216,7 @@ Page({
           })
         }
       }
-    }) 
+    })
     /*wx.navigateTo({
     })*/
   },
@@ -270,7 +270,7 @@ Page({
           })
         }
       }
-    }) 
+    })
   },
 
   fabudone: function (e) {
@@ -380,19 +380,19 @@ Page({
     })*/
   },
 
-  discrib: function(e){
+  discrib: function (e) {
     console.log(e.currentTarget.dataset)
     var data = e.currentTarget.dataset.taskid
     wx.setStorageSync('data', data)
     wx.navigateTo({
-      
+
       url: '../logs/logs?taskid=' + e.currentTarget.dataset.taskid
-      
+
     })
-    
+
 
 
   }
-  
-  
+
+
 })

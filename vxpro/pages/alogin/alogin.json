@@ -1,4 +1,7 @@
 {
   "key": "data.phone",
-  "password": "data.password"
+  "password": "data.password",
+   "windows":{
+      "disableScroll": true
+   }
 }

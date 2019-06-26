@@ -29,8 +29,7 @@
             </view>
             <view class="productCount">
                 <view class="buttontype">
-                  <button bindtap='undo'  class='td, forgiveBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>放弃</text></button>
-                  <button bindtap='done' class='td, checkBtn' data-taskid='{{item.transaction_id}}'><text style='font-size:38rpx;'>确认完成</text></button>
+
                 </view>
                 <text>报酬：</text>
                 <text style='color:#FFCC33'>{{item.task_price}}🐭</text>
@@ -67,8 +66,7 @@
 
           <view class="productCount">
               <view class="buttontype">
-                <button bindtap='fabundo'  class='td, forgiveBtn'data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>放弃发布</text></button>
-                <button bindtap='fabudone' class='td, checkBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>确认完成</text></button>
+
               </view>
               <text>报酬：</text>
               <text style='color:red'>{{item.task_price}}🐭</text>

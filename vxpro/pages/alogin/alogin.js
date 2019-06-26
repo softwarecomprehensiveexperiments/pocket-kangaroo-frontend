@@ -21,7 +21,11 @@ Page({
     })
 
   },
-
+  onLoad: function (options) {
+    wx.switchTab({
+      url: '../index/index',
+    });
+  },
 
 
   // 获取输入密码 
@@ -41,7 +45,8 @@ Page({
   // 登录 
 
   login: function () {
-    var reg = /^[1](([3][0-9])|([4][5,7,9])|([5][4,6,9])|([6][6])|([7][3,5,6,7,8])|([8][0-9])|([9][8,9]))[0-9]{8}$/
+    var header = getApp().globalData.header;
+    var reg = /^1(?:(3[0-9])|(4[5-7])|(5[0-9])|(7[0-9])|(8[0-9]))+\d{8}$/
     var r = this.data.phone.match(reg)
     var reg2 = /(?=[a-zA-Z0-9!@#$%^&*]{8,16})^.*(?=([0-9](?=[a-zA-Z!@#$%^&*]))|([!@#$%^&*](?=[a-zA-Z0-9]))|([a-zA-Z](?=[0-9!@#$%^&*]))).*$/
     var r2 = this.data.password.match(reg2)
@@ -59,63 +64,83 @@ Page({
 
       })
 
-    } 
-    else if(r==null){
-      wx.showToast({
-
-        title: '手机号格式错误',
-
-        icon: 'loading',
-
-        duration: 2000
-      })
     }
 
+
     else {
-
+      console.log(this.data.phone + '---' + this.data.password)
       // 这里修改成跳转的页面 
-
-      wx.showToast({
-
-        title: '登录成功',
-
-        icon: 'success',
-
-        duration: 2000
-
-      })
       wx.request({
-        url: 'host/user/login',
-        data:{key:this.data.phone,password:this.data.password},
-        method:'POST',
-        success:function(res){
-          if(res.statusCode == 200){
+        url: 'http://118.89.117.52/user/login',
+        data: { key: this.data.phone, password: this.data.password },
+        method: 'PUT',
+        success: function (res) {
+          if (res.statusCode == 200) {
+            if (res.data.success == true) {
+              wx.setStorageSync("token", res.header.Authorization);
+              console.log(res.header.Authorization)
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 2000
+              })
+              var id = res.data.result.user_id
+              var icon = res.data.result.user_icon
+              var money = res.data.result.user_properties
+              var tasknum = res.data.result.user_completed_receive_task_count
+              wx.setStorage({
+                key: 'userid',
+                data: id
+              })
+              wx.setStorage({
+                key: 'usericon',
+                data: icon
+              })
+              wx.setStorage({
+                key: 'usermoney',
+                data: money
+              })
+              wx.setStorage({
+                key: 'usertask',
+                data: tasknum
+              })
+              wx.switchTab({
+                url: '../index/index',
+              });
+            }
+            else {
+              wx.showToast({
+                title: res.data.description,
+                icon: 'loading',
+                duration: 500
+              })
+            }
+          }
+          else {
+            console.log("alogin.js wx.request" + res.statusCode);
+          }
 
-          }
-          else{
-            console.log("alogin.js wx.request"+res.statusCode);
-          }
         },
-        fail:function(){
+        fail: function () {
           console.log("alogin.js wx.request CheckCallUser fail");
         },
-        complete:function(){
+        complete: function () {
 
         }
       })
-      wx.switchTab({
-        url: '../index/index',
-      })
+
+
 
     }
 
   },
 
 
-  register: function(){
+  register: function () {
     wx.navigateTo({
       url: '../aregister/aregister',
     })
   }
 
 })
+

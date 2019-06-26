@@ -1,1 +1,6 @@
-{}
+{
+  "phone":"data.phone",
+  "name":"data.name",
+  "password":"data.password",
+  "sex":"data.sex"
+}

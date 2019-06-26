@@ -1,12 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+  <scroll-view class='scrollHeight' scroll-y="true" bindscrolltolower="scrollLower" lower-threshold='3'>
+  <navigator wx:for="{{batchlist}}" class="navigator" bindtap='clickDetails' data-obj='{{items}}'>
+  <view class="list-name"><text>{{items.user_name}}</text></view>
+  <view class="list-name"><text>{{items.user_phone}}</text></view>
+  <view class="list-icon"><image class="list-icon" url="{{item.user_icon}}"></image></view>
+  </navigator>
+  </scroll-view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

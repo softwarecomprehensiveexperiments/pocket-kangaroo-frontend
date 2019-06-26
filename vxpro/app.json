@@ -6,10 +6,14 @@
     "pages/logs/logs",
     "pages/index2/index2",
     "pages/index3/index3",
-    "pages/index4/index4"
+    "pages/index4/index4",
+    "pages/index5/index5",
+    "pages/index6/index6",
+    "pages/index7/index7"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "enablePullDownRefresh":true,
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "袋鼠钱袋",
     "navigationBarTextStyle": "black"

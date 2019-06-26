@@ -1,4 +1,4 @@
-  Page({
+Page({
 
   data: {
 
@@ -6,24 +6,24 @@
 
     password: '',
 
-    password2:'',
+    password2: '',
 
     name: '',
 
     sex: '',
 
-    sexs:[
-      {num:'0',value:"男"},
-      {num:'1',value:"女"},
+    sexs: [
+      { num: '0', value: "男" },
+      { num: '1', value: "女"},
     ]
 
   },
 
 
 
-  radioChange:function(e){
+  radioChange: function (e) {
     this.setData({
-      sex:e.detail.value,
+      sex: e.detail.value,
     })
     console.log(e.detail.value)
   },
@@ -92,6 +92,34 @@
 
   },
 
+  onLoad: function (options) {
+    var that = this
+    wx.request({
+      url: 'http://118.89.117.52/user/current_user',
+      method:"GET",
+      header:{
+        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+      },
+      success: function (res) {  
+        if (res.statusCode == 200) {
+          if (res.data.success == true) {  
+            that.setData({
+              name:res.data.result.user_name,
+              phone:res.data.result.user_phone,
+              sex:res.data.result.user_sex
+            })
+          }
+        }
+        else {
+          console.log("alogin.js wx.request" + res.statusCode);
+        }
+
+      }
+    })
+
+
+  },
+
 
   // 登录 
 
@@ -104,11 +132,11 @@
     var r2 = this.data.password.match(reg2)
     //验证用户名
     var reg3 = /^[a-zA-Z][a-zA-Z0-9_]{5,13}$/
-    var name1 = this.data.name.replace(/[\u4e00-\u9fa5]/g,"a")
+    var name1 = this.data.name.replace(/[\u4e00-\u9fa5]/g, "a")
     console.log(name1)
     var r3 = name1.match(reg3)
 
-    if (this.data.phone.length == 0 || this.data.password.length == 0||this.data.sex.length==0||this.data.name.length==0) {
+    if (this.data.phone.length == 0 || this.data.password.length == 0 || this.data.sex.length == 0 || this.data.name.length == 0) {
 
       wx.showToast({
 
@@ -137,11 +165,11 @@
 
         title: '密码格式错误',
 
-        icon:'loading',
+        icon: 'loading',
 
         duration: 2000
       })
-    } 
+    }
     else if (r3 == null) {
       wx.showToast({
 
@@ -152,33 +180,33 @@
         duration: 2000
       })
     }
-    else if(this.data.password!=this.data.password2){
+    else if (this.data.password != this.data.password2) {
       wx.showToast({
-        title:'两次密码不相同',
-        icon:'loading',
-        duration:2000
+        title: '两次密码不相同',
+        icon: 'loading',
+        duration: 2000
       })
-    } 
+    }
     else {
 
       // 这里修改成跳转的页面
       wx.request({
-        url: 'http://118.89.117.52/user/register',
-        data: { phone: this.data.phone,name:this.data.name, password: this.data.password ,sex:this.data.sex},
-        method: 'POST',
+        url: 'http://118.89.117.52/user/current_user',
+        data: { phone: this.data.phone, name: this.data.name, password: this.data.password, sex: this.data.sex },
+        method: 'PUT',
         success: function (res) {
           if (res.statusCode == 200) {
             if (res.data.success) {
               console.log("111");
               wx.navigateTo({
-                url: '../alogin/alogin',
+                url: '../index4/index4',
               })
               wx.showToast({
-                title: '注册成功',
+                title: '修改成功',
                 icon: 'success',
                 duration: 2000
               })
-            } else {    
+            } else {
               console.log("222");
               wx.showToast({
                 title: res.data.description,
