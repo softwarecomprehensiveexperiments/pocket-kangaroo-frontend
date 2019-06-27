@@ -1,2 +1,148 @@
-<!--pages/index2/index2.wxml-->
-<text>pages/index2/index2.wxml</text>
+<!-- 切换栏 -->
+<view class="swiper-tab">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
+</view>
+
+
+<picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><button>{{startDate}}</button></picker>
+
+
+  <view class='father_view'>
+    
+      <view class='son_view'>
+    
+        <view class="title-bg">任务题目</view>
+        <textarea class="textarea-bg" placeholder="请输入内容" bindinput ="_00Input" auto-height />
+    
+      </view>
+    
+    <view class='son_view'>
+    
+        <view class="title-bg">任务描述</view>
+        <textarea class="textarea-bg" placeholder="请输入内容"  bindinput ="_01Input"  auto-height/>
+    
+    </view>
+
+    <view class='son_view'>
+  
+      <view class="title-bg">任务报酬💰（一个人）</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_02Input" auto-height />
+  
+    </view>
+
+  </view>
+
+<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
+
+<!-- 问卷 -->
+<swiper-item>
+<scroll-view  scroll-y="true" style='height: 100%'>
+
+      <view class='son_view'>
+  
+      <view class="title-bg">问卷人数🧑</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_03Input" auto-height />
+  
+      </view>
+    <picker value="{{newIndex}}" range='{{typeArray}}' bindchange="bindTypeChange">
+        <image class='addNewQuestion' src='{{addIconPath}}'></image>
+    </picker>
+
+
+    <view id = 'body' wx:for="{{questionnaireArray}}" wx:key="id" wx:for-index='fatherIndex'>
+      <block wx:if="{{item.type === 'SCQ'}}">
+        <view class = 'SCQ' data-id='{{fatherIndex}}'>
+          <view class='SCQTitle'>
+            <view class='SCQQ'>Q</view>
+            <view class='SCQindex'>{{fatherIndex+1}}</view>
+            <view class='SCQquto'>:</view>
+            <textarea auto-height='true' class='SCQDiscription' value='{{item.content.description}}' bindblur='bindblurSCQ' data-id='{{fatherIndex}}'></textarea>
+            <image class='SCQaddIcon1' src='{{addIconPath1}}' mode='widthFix' catchtap='addSCQ' data-id='{{fatherIndex}}'></image>
+            <image class='SCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' catchtap='deleteSCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+          <view class='SCQOption' wx:for="{{item.content.options}}" wx:key="SCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+            <!-- <image class='SCQselectIcon' src="{{item.isSelected?'../../../images/SAQ2.png':'../../../images/SAQ1.png'}}" mode='widthFix'></image> -->
+            <textarea auto-height='true' value='{{item.name}}' class='SCQText' bindblur='bindblurOneOfSCQ' data-id='{{index}}'></textarea>
+            <image class='SCQdeleteIcon' src='{{deletePath}}' mode='widthFix' data-id='{{index}}' catchtap='deleteOneOfSCQ'></image>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{item.type === 'MCQ'}}">
+        <view class = 'MCQ' data-id='{{fatherIndex}}'>
+          <view class='MCQTitle'>
+            <view class='MCQQ'>Q</view>
+            <view class='MCQindex'>{{fatherIndex+1}}</view>
+            <view class='MCQquto'>:</view>
+            <textarea auto-height='true' class='MCQDiscription' value='{{item.content.description}}' data-id='{{fatherIndex}}' bindblur='bindblurMCQ'></textarea>
+            <image class='MCQaddIcon1' src='{{addIconPath1}}' mode='widthFix' bindtap='addMCQ' data-id='{{fatherIndex}}'></image>
+            <image class='MCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' bindtap='deleteMCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+          <view class='MCQOption' wx:for="{{item.content.options}}" wx:key="MCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+            <!-- <image class='MCQselectIcon' src="{{item.isSelected?'../../../images/MAQ2.png':'../../../images/MAQ1.png'}}" mode='widthFix'></image> -->
+            <textarea auto-height='true' class='MCQText' value='{{item.name}}' data-id='{{index}}' bindblur='bindblurOneOfMCQ'></textarea>
+            <image class='MCQdeleteIcon' src='{{deletePath}}' mode='widthFix' catchtap='deleteOneOfMCQ' data-id='{{index}}'></image>
+          </view>
+        </view>
+      </block>
+      
+      <block wx:if="{{item.type === 'SAQ'}}">
+        <view class = 'SAQ' data-id='{{fatherIndex}}'>
+          <view class='SAQTitle'>
+            <view class='SAQQ'>Q</view>
+            <view class='SAQindex'>{{fatherIndex+1}}</view>
+            <view class='SAQquto'>:</view>
+            <textarea auto-height='true' class='SAQDiscription' value='{{item.content.description}}' data-id='{{fatherIndex}}' bindblur='bindblurSAQ'></textarea>
+            <image class='SAQdeleteIcon' src='{{deletePath1}}' mode='widthFix' bindtap='deleteSAQ' data-id='{{fatherIndex}}'></image>
+          </view>
+          <textarea auto-height='true' class = "SAQAnswer" value='{{item.content.answer}}' bindblur='bindblurAnswerOfSAQ' data-id='{{fatherIndex}}'></textarea>
+        </view>
+      </block>
+    </view>
+
+    <button class="weui-btn" type="primary" bindtap='showQ'>提交问卷</button>
+
+
+
+</scroll-view>
+</swiper-item>
+
+
+<!-- 跑腿 -->
+<swiper-item>
+<scroll-view  scroll-y="true" style='height: 100%'>
+
+
+
+    <button class="weui-btn" type="primary" bindtap='showQ'>提交跑腿</button>
+</scroll-view>
+</swiper-item>
+
+
+
+<!-- 3 -->
+<swiper-item>
+<scroll-view  scroll-y="true" style='height: 100%'>
+  
+    <button class="weui-btn" type="primary" bindtap='showQ'>提交</button>
+</scroll-view>
+</swiper-item>
+
+
+
+
+
+<!--4-->
+<swiper-item>
+<scroll-view  scroll-y="true" style='height: 100%'>
+
+
+    <button class="weui-btn" type="primary" bindtap='showQ'>提交</button>
+</scroll-view>
+</swiper-item>
+
+
+
+
+</swiper>

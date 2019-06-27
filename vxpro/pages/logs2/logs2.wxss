@@ -11,14 +11,8 @@
   display: flex;
   justify-content: center;
 }
-#top {
-  background-color: #f5f7eb;
-  display: flex;
-  flex-direction:column;
-    border-radius: 30rpx 30rpx 30rpx 30rpx;
-    padding: 35rpx;
-}
-#obody {
+
+#body {
   width: 80%;
   height:fit-content;
   display: flex;
@@ -30,18 +24,40 @@
   padding: 18px;
 }
 
-#title{
+#t_title_con {
   display: flex;
-  flex-direction: row;
-  border-radius: 30rpx 30rpx 30rpx 30rpx;
+  font-size: 30px;
+  justify-content: center;
+  flex-direction:row;
+
 }
 
-.titleContent{
-  justify-items: center;
+.rig {
+  display: flex;
 }
 
-.priceContent{
+.rig2 {
+  color: #6e6868;
+  font-size: 18px;
+  padding: 0px;
   margin-left: auto;
+}
+
+#t_rcnt_con2 {
+  color: #747070;
+  padding: 8rpx 0rpx;
+}
+
+#t_pubd_con2 {
+  padding-bottom: 7px;
+}
+
+#t_pub_con {
+  padding-top: 13px;
+}
+
+.t_uni_con {
+  padding: 12rpx 0px;
 }
 
 .SCQOption{
@@ -50,76 +66,67 @@
   margin-top: 20rpx;
 }
 
-.MCQselectIcon{
-  width: 60rpx;
-}
-.SCQ{
-  padding: 20rpx;
-}
 .SCQText{
-  margin-left: 20rpx;
   /* color: #E3E3E3; */
   /* border: 2rpx solid #999; */
   width: 90%;
+  word-break: keep-all;
   word-wrap: break-word;
-}
-
-.MCQ{
-  padding: 20rpx;
+  margin-left: 20rpx;
 }
 
 .MCQText{
+  display: flex;
+  flex-direction: column;
   margin-left: 20rpx;
+  margin-top: 13rpx;
   /* color: #E3E3E3; */
   /* border: 2rpx solid #999; */
   width: 90%;
+  word-break: keep-all;
   word-wrap: break-word;
-}
-
-.SAQ{
-  padding: 20rpx;
-    border: 2rpx solid #999;
-}
-
-.SCQTitle{
-  display: flex;
-  flex-direction: row;
-}
-
-.MCQTitle{
-  display: flex;
-  flex-direction: row;
-}
-
-.SAQTitle{
-  display: flex;
-  flex-direction: row;
 }
 
 .MCQOption{
   display: flex;
   flex-direction: column;
-  margin-top: 20rpx;
+  margin-top: 7rpx;
 }
+
 
 .SCQDiscription{
   /* border: 2rpx solid #999; */
   width: 90%;
+  word-break: keep-all;
   word-wrap: break-word;
 }
 
 .MCQDiscription{
   /* border: 2rpx solid #999; */
   width: 90%;
+  word-break: keep-all;
   word-wrap: break-word;
 }
 
-#body{
-  margin-top: 20rpx;
+#q_title_con {
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  flex-direction:row;
+  color: #1AAD19;
+  margin-top: 30px;
 }
 
-.weui-btn{
-  width: 35%;
-  margin-top: 25rpx;
-  margin-bottom: 20rpx;
+#t_com_con {
+  color: #1AAD19;
+  padding: 10rpx;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30rpx;
+}
+
+.ans {
+  color: #1AAD19;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }

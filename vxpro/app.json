@@ -6,18 +6,20 @@
     "pages/logs/logs",
     "pages/index2/index2",
     "pages/index3/index3",
-    "pages/index4/index4"
+    "pages/index4/index4",
+    "pages/detailPub/detailPub",
+    "pages/logs2/logs2"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "袋鼠钱袋",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#8A8C8E",
-    "selectedColor": "#FFCC33",
-    "backgroundColor": "#F2EADA",
+    "color": "#4A4C4E",
+    "selectedColor": "#dF9C03",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",

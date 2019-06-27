@@ -1,32 +1,44 @@
 <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+        <swiper style="height:220px"indicator-dots="true" autoplay="true" interval="5000" duration="500">
+          <block wx:for="{{imgUrls}}">
+            <swiper-item>
+              <image src="{{item}}" mode="scaleToFill" class="slide-image"/>
+            </swiper-item>
+          </block>
+        </swiper>
+        
         <view  class="orderDetails" wx:for="{{tasks}}" wx:key=" ">
           <view class="orderListTitle">
             <text class="userName" style='color:#3B3B3B;'>{{item.publisher_name}}</text>
             <text style='color:#4E4E4E;'>发布的</text>
-            <text class="taskType" >{{item.task_type}}</text>
+            <text class="taskType" wx:if="{{item.task_type==0}}" style='color:#3464bd'> 跑腿 </text>
+            <text class="taskType" wx:elif="{{item.task_type==1}}" style='color:#3464bd'> 分享 </text>
+            <text class="taskType" wx:elif="{{item.task_type==2}}" style='color:#3464bd'> 问卷 </text>
             <text style='color:#4E4E4E;'>任务</text>
             <text class="orderStatus" >{{item.task_state}}</text>
           </view>
           <view style='height: 1px; background:#eaeaea;'></view>
           <view class='tbody'>
-            <view class = 'main' bindtap='discrib' data-task='{{item}}'>
-              <view class="productInfo" bindtap='discrib' data-taskid='{{item.task_id}}'>
+            <view class = 'main' bindtap='discrib' data-task='{{item}}' data-taskid='{{item.task_id}}' data-rec='{{item.is_rec}}'>
+              <view class="productInfo">
                 <view class="title">{{item.task_title}}</view>
                 <text class="des">{{item.task_short_description}}</text>
               </view>
               <view class ='count'>
-                <view class= "ca">{{item.current_receivers_count}}</view>
-                <view class="divi">/</view>
-                <view class='cb'>{{item.max_receivers_count}}</view>
+                  <view class="recLab" wx:if="{{item.is_rec}}">
+                      <image class="recImage" style='width:110px; height:110px;' src="../../icons/rec.png"></image> 
+                  </view>
+                  <view class= "ca">{{item.current_receivers_count}}</view>
+                  <view class="divi">/</view>
+                  <view class='cb'>{{item.max_receivers_count}}</view>
               </view>
             </view>
 
           <view class="productCount">
               <view class="buttontype">
-                <button bindtap='jieshou' class='td, checkBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>接受任务</text></button>
               </view>
               <text>报酬：</text>
-              <text style='color:red'>{{item.task_price}}🐭</text>
+              <text style='color:#Ffd343'>{{item.task_price}} 💰</text>
           </view>
         </view>
         </view>

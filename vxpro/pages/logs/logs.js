@@ -78,6 +78,7 @@ Page({
       res += "@@";
     }
     res = res.substring(0, res.length - 2);
+    console.log(res);
     return res;
   },
 
@@ -90,13 +91,12 @@ Page({
    
     var that = this;
     wx.request({
-      url: 'http://118.89.117.52//transaction/detail/' + options.taskid,
+      url: 'http://118.89.117.52/transaction/detail/' + options.transid,
       method: 'GET',
       header: {
         //'authorization': wx.getStorageSync("token")
         'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
       },
-  
       success: function (res) {
         console.log(res.data)
         if (res.statusCode == 200) {
@@ -106,8 +106,10 @@ Page({
               icon: 'success',
               duration: 1000
             })
-            that.setData({ questionnaireArray: that.convertToUIData(res.data)})
+            that.setData({ id: res.data.result.transaction_id });
+            that.setData({ questionnaireArray: that.pre_process(that.convertToUIData(res.data))})
             that.setData({ taskPrice: res.data.result.task_price })
+            that.setData({ trans: res.data.result })
             console.log(res);
           }
           else {
@@ -140,7 +142,16 @@ Page({
   onReady: function () {
 
   },
-
+  pre_process: function (ques) {
+    for (var i in ques) {
+      for (var j in ques[i].content.options) {
+        ques[i].content.options[j]["index"] = String.fromCharCode('A'.charCodeAt(0) + ques[i].content.options[j].id);
+        ques[i].content.options[j]["count"] = 0;
+        ques[i].content.options[j]["percent"] = 0;
+      }
+    }
+    return ques;
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -282,7 +293,53 @@ Page({
   },
 
   complete: function () {
-    this.data.respData.result.committion = this.getcomm(this.data.questionnaireArray);
-    console.log(this.data.respData.result.committion);
+    console.log(this.getcomm(this.data.questionnaireArray));
+    var that = this;
+    console.log(that.data);
+    wx.request({
+      url: 'http://118.89.117.52/transaction/' + that.data.id,
+      data: {
+        committion: that.getcomm(that.data.questionnaireArray)
+      },
+      method: 'PUT',
+      header: {
+        //'authorization': wx.getStorageSync("token")
+        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.statusCode == 200) {
+          if (res.data.success == true) {
+            wx.showToast({
+              title: '提交成功',
+              icon: 'success',
+              duration: 1000
+            })
+            wx.navigateBack({
+              delta: 1  // 返回上一级页面。
+            })
+            console.log(res);
+          }
+          else {
+            wx.showToast({
+              title: res.data.description,
+              icon: 'loading',
+              duration: 500
+
+            })
+            console.log(res.data.description)
+          }
+        }
+        else {
+          console.log("alogin.js wx.request" + res.statusCode);
+        }
+      },
+      fail: function () {
+        console.log("alogin.js wx.request CheckCallUser fail");
+      },
+      complete: function () {
+
+      }
+    })
   },
 })

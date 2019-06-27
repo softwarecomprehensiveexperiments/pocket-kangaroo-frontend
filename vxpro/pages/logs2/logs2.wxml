@@ -1,0 +1,69 @@
+<view id="bg">
+  <scroll-view scroll-y="true" style='height: 100%' >
+  <view id="sv">
+  <view id="body">
+    <view id="t_title_con"><text id="t_title">{{task.task_title}}</text></view>
+    <view class="rig" id="t_rcnt_con1"><view class="rig2" id="t_rcnt_con2"><text id="t_rn">{{recs}} </text><text>共 </text><text id="t_rcnt">{{task.current_receivers_count}}</text><text> 人已领取</text></view></view>
+    <view style='height:1px;margin:10px 0px; background-color:#eaeaea'></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>描述：</text><text id="t_des">{{task.task_description}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>问题总数：</text><text id="t_pcnt">{{task.questionnaire.length}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>剩余领取：</text><text id="t_pcnt" style='color:red'>{{task.max_receivers_count-task.current_receivers_count}}</text><text> 人（总 </text><text id="t_pcnt" style='color:#38a52c'>{{task.max_receivers_count}}</text><text> 人）</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>报酬：</text><text id="t_pcnt" style='color:#ffcc33'>{{task.task_price}}</text><text> 💰</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>截止到：</text><text id="t_dead">{{task.task_deadline}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>发布时间：</text><text id="t_dead">{{task.task_release_time}}</text></view>
+    <view class="t_uni_con">
+      <text style='color:#7a7070'>当前状态：</text>
+      <text wx:if="{{task.task_state_code==0 || task.task_state_code==1 || task.task_state_code==2}}" style='color:rgb(236, 197, 78)'>{{task.state}}</text>
+      <text wx:elif="{{task.task_state_code==3}}" style='color:#1AAD19;'>{{task.state}}</text>
+      <text wx:elif="{{task.task_state_code==4}}" style='color:red;'>{{task.state}}</text>
+    </view>
+
+      <view id="q_title_con"><text id="q_title">完成详情</text></view>
+          <view id="t_com_con"><text>总完成人数：</text><text>{{task.current_complete_count}}</text><text> 人</text></view>
+          <view id = 'qbody' wx:for="{{questionnaireArray}}" wx:key="id" wx:for-index='fatherIndex'>
+            <view style='height:1px;margin:32px 0px; background-color:#eaeaea'></view>
+            <block class='qu' wx:if="{{item.type === 'SCQ'}}">
+              <view class = 'SCQ' data-id='{{fatherIndex}}'>
+                <view class='SCQTitle'>
+                  <text class='SCQindex'>{{fatherIndex+1}}</text>
+                  <text class='SCQquto'>.(单选) </text>
+                  <text class='SCQDiscription' data-id='{{fatherIndex}}'>{{item.content.description}}</text>
+                </view>
+                <view class="SCQOption">
+                  <view class="SCQText" wx:for="{{item.content.options}}" wx:key="SCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+                    <view class='sel'>
+                      <text>{{item.index}}. </text><text>{{item.name}}</text>
+                    </view>
+                    <view class='ans'>
+                      <text decode="{{true}}">▶&nbsp;</text><text>{{item.percent}}</text><text>%</text><text> 的人选了</text><text>{{item.index}}\n</text>
+                      <text decode="{{true}}">&emsp;&nbsp;</text><text>具体人数：</text><text>{{item.count}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <block class='qu' wx:if="{{item.type === 'MCQ'}}">
+              <view class = 'MCQ' data-id='{{fatherIndex}}'>
+                <view class='MCQTitle'>
+                  <text class='MCQindex'>{{fatherIndex+1}}</text>
+                  <text class='MCQquto'>.(多选) </text>
+                  <text class='MCQDiscription' data-id='{{fatherIndex}}'>{{item.content.description}}</text>
+                </view>
+                <view class="MCQOption">
+                  <view class="MCQText" wx:for="{{item.content.options}}" wx:key="MCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+                    <view class='sel'>
+                      <text>{{item.index}}. </text><text>{{item.name}}</text>
+                    </view>
+                    <view class='ans'>
+                      <text decode="{{true}}">▶&nbsp;</text><text>{{item.percent}}</text><text>%</text><text> 的人选了</text><text>{{item.index}}\n</text>
+                      <text decode="{{true}}">&emsp;&nbsp;</text><text>具体人数：</text><text>{{item.count}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,22 @@
+
+<view id="bg">
+<scroll-view scroll-y="true" style='height: 100%' >
+  <view id="sv">
+  <view id="body">
+    <view id="t_title_con"><text id="t_title">{{task.task_title}}</text></view>
+    <view class="rig" id="t_rcnt_con1"><view class="rig2" id="t_rcnt_con2"><text id="t_rn">{{recs}} </text><text>共 </text><text id="t_rcnt">{{task.current_receivers_count}}</text><text> 人已领取</text></view></view>
+    <view style='height:1px;margin:10px 0px; background-color:#eaeaea'></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>描述：</text><text id="t_des">{{task.task_description}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>问题总数：</text><text id="t_pcnt">{{task.questionnaire.length}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>剩余可领取：</text><text id="t_pcnt" style='color:red'>{{task.max_receivers_count-task.current_receivers_count}}</text><text> 人（总 </text><text id="t_pcnt" style='color:#38a52c'>{{task.max_receivers_count}}</text><text> 人）</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>报酬：</text><text id="t_pcnt" style='color:#ffcc33'>{{task.task_price}}</text><text> 💰</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>截止到：</text><text id="t_dead">{{task.task_deadline}}</text></view>
+    <view class="rig" id="t_pub_con1"><view class="rig2" id="t_pub_con2"><text>由 </text><text id="t_pub">{{task.publisher_name}}</text><text> 发布</text></view></view>
+    <view class="rig" id="t_pubd_con1"><view class="rig2" id="t_pubd_con2"><text id="t_pubd">{{date}}</text><text>前</text></view></view>
+    <button wx:if="{{rec}}" data-taskid='{{task.task_id}}' class="weui-btn" type="primary" bindtap='jieshou'><text>接受</text></button>
+    <button wx:elif="{{!rec}}" class="weui-btn" disabled='true' style="background-color:#7a7070" type="primary"><text>已领取</text></button>
+  </view>
+  </view>
+  </scroll-view>
+</view>
+

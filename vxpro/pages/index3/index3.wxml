@@ -14,14 +14,18 @@
           <view class="orderListTitle">
             <text class="userName" style='color:#3B3B3B;'>{{item.publisher_name}}</text>
             <text style='color:#4E4E4E;'>发布的</text>
-            <text class="taskType" >{{item.task_type}}</text>
+            <text class="taskType" wx:if="{{item.task_type==0}}" style='color:#3464bd'>跑腿</text>
+            <text class="taskType" wx:elif="{{item.task_type==1}}" style='color:#3464bd'>分享</text>
+            <text class="taskType" wx:elif="{{item.task_type==2}}" style='color:#3464bd'>问卷</text>
             <text style='color:#4E4E4E;'>任务</text>
-            <text class="orderStatus" >{{item.state}}</text>
+            <text class="orderStatus" wx:if="{{item.transaction_state_code==0 || item.transaction_state_code==1}}" style='color:rgb(236, 197, 78)'>{{item.state}}</text>
+      <text class="orderStatus" wx:elif="{{item.transaction_state_code==2}}" style='color:#1AAD19;'>{{item.state}}</text>
+      <text class="orderStatus" wx:elif="{{item.transaction_state_code==3 || item.transaction_state_code==4 || item.transaction_state_code==5}}" style='color:red;'>{{item.state}}</text>
           </view>
           <view style='height: 1px; background:#eaeaea;'></view>
-          <view class = 'tbody' >
-            <view class = 'main'bindtap='discrib' data-taskid='{{item.task_id}}'>
-              <view class="productInfo" bindtap='discrib' data-task='{{item}}'>
+          <view class = 'tbody'>
+            <view class = 'main' bindtap='transDiscrib' data-transaction_id='{{item.transaction_id}}'>
+              <view class="productInfo" >
                 <view class="title">{{item.task_title}}</view>
                 <text class="des">{{item.task_short_description}}</text>
               </view>
@@ -29,11 +33,11 @@
             </view>
             <view class="productCount">
                 <view class="buttontype">
-                  <button bindtap='undo'  class='td, forgiveBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>放弃</text></button>
-                  <button bindtap='done' class='td, checkBtn' data-taskid='{{item.transaction_id}}'><text style='font-size:38rpx;'>确认完成</text></button>
+                  <button wx:if="{{item.transaction_state_code==0}}" bindtap='undo'  class='td, forgiveBtn' data-transaction_id='{{item.transaction_id}}'><text style='font-size:38rpx;'>放弃</text></button>
+                  <button wx:if="{{item.transaction_state_code==0}}" bindtap='transDiscrib' class='td, checkBtn' data-transaction_id='{{item.transaction_id}}'><text style='font-size:38rpx;'>去完成</text></button>
                 </view>
                 <text>报酬：</text>
-                <text style='color:#FFCC33'>{{item.task_price}}🐭</text>
+                <text style='color:#FFCC33'>{{item.task_price}} 💰</text>
             </view>
           </view>
         </view>
@@ -45,16 +49,20 @@
       <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
         <view  class="orderDetails" wx:for="{{tasks1}}" wx:key=" ">
           <view class="orderListTitle">
-            <text class="userName" style='color:#3B3B3B;'>Wo</text>
+            <text class="userName" style='color:#3B3B3B;'>我</text>
             <text style='color:#4E4E4E;'>发布的</text>
-            <text class="taskType" >{{item.task_type}}</text>
+            <text class="taskType" wx:if="{{item.task_type==0}}" style='color:#3464bd'> 跑腿 </text>
+            <text class="taskType" wx:elif="{{item.task_type==1}}" style='color:#3464bd'> 分享 </text>
+            <text class="taskType" wx:elif="{{item.task_type==2}}" style='color:#3464bd'> 问卷 </text>
             <text style='color:#4E4E4E;'>任务</text>
-            <text class="orderStatus" >{{item.task_state}}</text>
+            <text class="orderStatus" wx:if="{{item.task_state_code==0 || item.task_state_code==1 || item.task_state_code==2}}" style='color:rgb(236, 197, 78)'>{{item.task_state}}</text>
+      <text class="orderStatus" wx:elif="{{item.task_state_code==3}}" style='color:#1AAD19;'>{{item.task_state}}</text>
+      <text class="orderStatus" wx:elif="{{item.task_state_code==4}}" style='color:red;'>{{item.task_state}}</text>
           </view>
           <view style='height: 1px; background:#eaeaea;'></view>
           <view class='tbody'>
-            <view class = 'main' bindtap='discrib' data-task='{{item}}'>
-              <view class="productInfo" bindtap='discrib' data-task='{{item}}'>
+            <view class = 'main' bindtap='taskDiscrib' data-taskid='{{item.task_id}}'>
+              <view class="productInfo" >
                 <view class="title">{{item.task_title}}</view>
                 <text class="des">{{item.task_short_description}}</text>
               </view>
@@ -67,11 +75,12 @@
 
           <view class="productCount">
               <view class="buttontype">
-                <button bindtap='fabundo'  class='td, forgiveBtn'data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>放弃发布</text></button>
-                <button bindtap='fabudone' class='td, checkBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>确认完成</text></button>
+                <button wx:if="{{item.task_state_code==0 ||item.task_state_code==1}}" bindtap='fabundo'  class='td, forgiveBtn'data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>放弃发布</text></button>
+                <button wx:if="{{item.task_state_code!=2}}" bindtap='taskDiscrib' class='td, checkBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>查看详情</text></button>
+                <button wx:elif="{{item.task_state_code==2}}" bindtap='fabudone' class='td, checkBtn' data-taskid='{{item.task_id}}'><text style='font-size:38rpx;'>确认完成</text></button>
               </view>
               <text>报酬：</text>
-              <text style='color:red'>{{item.task_price}}🐭</text>
+              <text style='color:red'>{{item.task_price}} 💰</text>
           </view>
         </view>
         </view>

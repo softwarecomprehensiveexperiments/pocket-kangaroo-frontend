@@ -11,7 +11,9 @@
   color: #281f1d
 
 }
- 
+ .slide-image {
+   width:100%;
+ }
 .swiper-tab-list {
   margin: 0 45px;
   padding-bottom: 7rpx;
@@ -212,4 +214,10 @@ border: none;
   align-items: center;
   margin-left: auto;
   margin-right: 30rpx;
+}
+
+.recLab {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 20px
 }

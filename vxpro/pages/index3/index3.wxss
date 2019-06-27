@@ -1,6 +1,6 @@
 /*切换栏*/
 .swiper-tab {
-  background: #f2eada;
+  background: #F2EADA;
   display: flex;
   position: relative;
   z-index: 2;
@@ -20,7 +20,7 @@
 }
  
 .on {
-  border-bottom:2rpx solid #FFCC33;
+  border-bottom:2rpx solid #ffcc33;
 }
  
 .navTopList {
