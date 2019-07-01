@@ -13,8 +13,8 @@ Page({
     sex: '',
 
     sexs: [
-      { num: '0', value: "男" },
-      { num: '1', value: "女"},
+      { num: '0', value: "男", checked:false},
+      { num: '1', value: "女", checked:false},
     ]
 
   },
@@ -98,7 +98,7 @@ Page({
       url: 'http://118.89.117.52/user/current_user',
       method:"GET",
       header:{
-        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+        'authorization': wx.getStorageSync("token")
       },
       success: function (res) {  
         if (res.statusCode == 200) {
@@ -108,6 +108,14 @@ Page({
               phone:res.data.result.user_phone,
               sex:res.data.result.user_sex
             })
+            if(res.data.result.user_sex == 0){
+              that.data.sexs[0].checked = true;
+              that.data.sexs[1].checked = false;
+            }
+            else{
+              that.data.sexs[0].checked = false;
+              that.data.sexs[1].checked = true;
+            }
           }
         }
         else {

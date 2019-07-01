@@ -28,7 +28,7 @@
   <image class="keyImage" src="../../icons/ico-sex.png"></image> 
   <label class="loginLab">性别</label>
 <radio-group class='radio-group' bindchange="radioChange">
-    <radio  class='radio'style='margin-left: 11px;' wx:for-items="{{sexs}}" wx:key="num" value="{{item.num}}" checked="{{item.num}}">
+    <radio  class='radio'style='margin-left: 11px;' wx:for-items="{{sexs}}" wx:key="num" value="{{item.num}}" checked="{{item.checked}}">
     <text class="loginLab" style='margin-left: 0px;'>{{item.value}}</text>
     </radio>
 </radio-group>

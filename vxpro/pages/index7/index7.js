@@ -20,8 +20,7 @@ Page({
       url: 'http://118.89.117.52/transaction/short/receive_completed',
       method: 'GET',
       header: {
-        //'authorization': wx.getStorageSync("token")
-        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+        'authorization': wx.getStorageSync("token")
       },
       success: function (res) {
         console.log(res.data)
