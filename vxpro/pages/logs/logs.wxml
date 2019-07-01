@@ -5,8 +5,12 @@
 
 <view id="top">
 <view id="title">
-  <view class='titleContent'>问卷：{{trans.task_title}}</view>
-  <view id = 'money' class='priceContent'>{{taskPrice}} 💰</view>
+<view class='titleContent1'>
+  <view class='titleContent'>问卷：</view>
+
+  <view id = 'money' style='color:#ffcc33;' class='priceContent'>{{taskPrice}} 💰</view>
+  </view>
+  <view class='titleContent'>{{trans.task_title}}</view>
 </view>
 <view id="title">
   <view class='titleContent' style='margin-top: 8px;color:#7a7070'>截止日期：<text>\n</text><text style='color:red;'>{{trans.task_deadline}}</text></view>
@@ -45,7 +49,8 @@
   </block>
 </view>
 
-<button class="weui-btn" type="primary" bindtap='complete'>完成</button>
+<button wx:if='{{trans.transaction_state_code==0}}' class="weui-btn" type="primary" bindtap='complete'>完成</button>
+<button wx:elif="{{trans.transaction_state_code!=0}}" class="weui-btn" disabled='true' style="background-color:#7a7070" type="primary"><text>已完成</text></button>
 </view>
       </view>
   </scroll-view>

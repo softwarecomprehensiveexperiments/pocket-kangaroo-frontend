@@ -6,11 +6,110 @@
 </view>
 
 
-<picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><button>{{startDate}}</button></picker>
 
+<view id="bg">
+  <swiper current="{{currtab}}" class="swiper-box" duration="300" bindchange="tabChange">
 
+<!-- 问卷 -->
+<swiper-item  class="swiper-box2">
+  <scroll-view scroll-y="true" style='height: 100%' >
+ 
+  <view id="sv">
+  <view id="obody">
+   <view class="t_title_con"><text class="t_title">发布新问卷</text></view>
   <view class='father_view'>
+  
+      <view class='son_view'>
     
+        <view class="title-bg">问卷标题</view>
+        <textarea class="textarea-bg" maxlength='12' placeholder="请输入内容" bindinput ="_00Input" auto-height />
+    
+      </view>
+    
+    <view class='son_view'>
+    
+        <view class="title-bg">问卷描述</view>
+        <textarea class="textarea-bg" placeholder="请输入内容"  bindinput ="_01Input"  auto-height/>
+    
+    </view>
+
+    <view class='son_view'>
+  
+      <view class="title-bg">问卷报酬（每人）💰</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_02Input" auto-height />
+  
+    </view>
+    <view class='son_view'>
+  
+      <view class="title-bg">问卷人数🧑</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_03Input" auto-height />
+  
+      </view>
+
+
+    <picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap'      bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><button>{{startDate}}</button></picker>
+  </view>
+    <view id="q_title_con"><text id="q_title">问卷编辑区</text></view>
+    <view id = 'body' wx:for="{{questionnaireArray}}" wx:key="id" wx:for-index='fatherIndex'>
+      <block wx:if="{{item.type === 'SCQ'}}">
+        <view class = 'out, SCQ' data-id='{{fatherIndex}}'>
+          <view class='SCQTitle'>
+            <view class='SCQindex'>{{fatherIndex+1}}.<text decode="{{true}}">&nbsp;</text></view>
+            <textarea auto-height='true' class='SCQDiscription' placeholder='题目描述(单选)' value='{{item.content.description}}' bindblur='bindblurSCQ' data-id='{{fatherIndex}}'></textarea>
+            
+            <image class='SCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' catchtap='deleteSCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+          <view class='SCQOption' wx:for="{{item.content.options}}" wx:key="SCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+            <textarea auto-height='true' placeholder='输入待选选项' value='{{item.name}}' class='SCQText' bindblur='bindblurOneOfSCQ' data-id='{{index}}'></textarea>
+            <image class='SCQdeleteIcon' src='{{deletePath}}' mode='widthFix' data-id='{{index}}' catchtap='deleteOneOfSCQ'></image>
+          </view>
+          
+          <view style='display: flex;margin-top:10px;justify-content: center;'>
+            <view auto-height='true' class='SCQText' style='border: 2rpx dashed #999;'></view>
+            <image class='SCQdeleteIcon' src='{{addIconPath1}}' mode='widthFix' catchtap='addSCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{item.type === 'MCQ'}}">
+        <view class = 'out, MCQ' data-id='{{fatherIndex}}'>
+          <view class='MCQTitle'>
+            <view class='MCQindex'>{{fatherIndex+1}}.<text decode="{{true}}">&nbsp;</text></view>
+            <textarea auto-height='true' class='MCQDiscription' placeholder='题目描述(多选)' value='{{item.content.description}}' data-id='{{fatherIndex}}' bindblur='bindblurMCQ'></textarea>
+            <image class='MCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' bindtap='deleteMCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+          <view class='MCQOption' wx:for="{{item.content.options}}" wx:key="MCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
+            <!-- <image class='MCQselectIcon' src="{{item.isSelected?'../../../images/MAQ2.png':'../../../images/MAQ1.png'}}" mode='widthFix'></image> -->
+            <textarea auto-height='true' class='MCQText' placeholder='输入待选选项' value='{{item.name}}' data-id='{{index}}' bindblur='bindblurOneOfMCQ'></textarea>
+            <image class='MCQdeleteIcon' src='{{deletePath}}' mode='widthFix' catchtap='deleteOneOfMCQ' data-id='{{index}}'></image>
+          </view>
+          <view style='display: flex;margin-top:10px;justify-content: center;'>
+            <view auto-height='true' class='SCQText' style='border: 2rpx dashed #999;'></view>
+            <image class='SCQdeleteIcon' src='{{addIconPath1}}' mode='widthFix' catchtap='addSCQ' data-id='{{fatherIndex}}'></image>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <picker class='addNewQuestionbg' value="{{newIndex}}" range='{{typeArray}}' bindchange="bindTypeChange">
+        <image class='addNewQuestion' src='{{addIconPath}}'></image>
+    </picker>
+
+    <button class="weui-btn" type="primary" bindtap='showQ'>发布问卷</button>
+
+
+  </view>
+      </view>
+  </scroll-view>
+</swiper-item>
+
+
+<!-- 跑腿 -->
+<swiper-item>
+<scroll-view scroll-y="true" style='height: 100%' >
+  <view id="sv">
+  <view id="obody">
+<view class='father_view'>
+      <view class="t_title_con"><text class="t_title">发布新跑腿任务</text></view>
       <view class='son_view'>
     
         <view class="title-bg">任务题目</view>
@@ -27,122 +126,76 @@
 
     <view class='son_view'>
   
-      <view class="title-bg">任务报酬💰（一个人）</view>
+      <view class="title-bg">任务报酬（每人）💰</view>
       <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_02Input" auto-height />
   
     </view>
-
-  </view>
-
-<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
-
-<!-- 问卷 -->
-<swiper-item>
-<scroll-view  scroll-y="true" style='height: 100%'>
-
-      <view class='son_view'>
+    <view class='son_view'>
   
       <view class="title-bg">问卷人数🧑</view>
       <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_03Input" auto-height />
   
       </view>
-    <picker value="{{newIndex}}" range='{{typeArray}}' bindchange="bindTypeChange">
-        <image class='addNewQuestion' src='{{addIconPath}}'></image>
-    </picker>
 
 
-    <view id = 'body' wx:for="{{questionnaireArray}}" wx:key="id" wx:for-index='fatherIndex'>
-      <block wx:if="{{item.type === 'SCQ'}}">
-        <view class = 'SCQ' data-id='{{fatherIndex}}'>
-          <view class='SCQTitle'>
-            <view class='SCQQ'>Q</view>
-            <view class='SCQindex'>{{fatherIndex+1}}</view>
-            <view class='SCQquto'>:</view>
-            <textarea auto-height='true' class='SCQDiscription' value='{{item.content.description}}' bindblur='bindblurSCQ' data-id='{{fatherIndex}}'></textarea>
-            <image class='SCQaddIcon1' src='{{addIconPath1}}' mode='widthFix' catchtap='addSCQ' data-id='{{fatherIndex}}'></image>
-            <image class='SCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' catchtap='deleteSCQ' data-id='{{fatherIndex}}'></image>
-          </view>
-          <view class='SCQOption' wx:for="{{item.content.options}}" wx:key="SCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
-            <!-- <image class='SCQselectIcon' src="{{item.isSelected?'../../../images/SAQ2.png':'../../../images/SAQ1.png'}}" mode='widthFix'></image> -->
-            <textarea auto-height='true' value='{{item.name}}' class='SCQText' bindblur='bindblurOneOfSCQ' data-id='{{index}}'></textarea>
-            <image class='SCQdeleteIcon' src='{{deletePath}}' mode='widthFix' data-id='{{index}}' catchtap='deleteOneOfSCQ'></image>
-          </view>
-        </view>
-      </block>
-      <block wx:if="{{item.type === 'MCQ'}}">
-        <view class = 'MCQ' data-id='{{fatherIndex}}'>
-          <view class='MCQTitle'>
-            <view class='MCQQ'>Q</view>
-            <view class='MCQindex'>{{fatherIndex+1}}</view>
-            <view class='MCQquto'>:</view>
-            <textarea auto-height='true' class='MCQDiscription' value='{{item.content.description}}' data-id='{{fatherIndex}}' bindblur='bindblurMCQ'></textarea>
-            <image class='MCQaddIcon1' src='{{addIconPath1}}' mode='widthFix' bindtap='addMCQ' data-id='{{fatherIndex}}'></image>
-            <image class='MCQdeleteIcon1' src='{{deletePath1}}' mode='widthFix' bindtap='deleteMCQ' data-id='{{fatherIndex}}'></image>
-          </view>
-          <view class='MCQOption' wx:for="{{item.content.options}}" wx:key="MCQID" data-id='{{fatherIndex}}' bindtouchstart='getTempFatherIndex'>
-            <!-- <image class='MCQselectIcon' src="{{item.isSelected?'../../../images/MAQ2.png':'../../../images/MAQ1.png'}}" mode='widthFix'></image> -->
-            <textarea auto-height='true' class='MCQText' value='{{item.name}}' data-id='{{index}}' bindblur='bindblurOneOfMCQ'></textarea>
-            <image class='MCQdeleteIcon' src='{{deletePath}}' mode='widthFix' catchtap='deleteOneOfMCQ' data-id='{{index}}'></image>
-          </view>
-        </view>
-      </block>
-      
-      <block wx:if="{{item.type === 'SAQ'}}">
-        <view class = 'SAQ' data-id='{{fatherIndex}}'>
-          <view class='SAQTitle'>
-            <view class='SAQQ'>Q</view>
-            <view class='SAQindex'>{{fatherIndex+1}}</view>
-            <view class='SAQquto'>:</view>
-            <textarea auto-height='true' class='SAQDiscription' value='{{item.content.description}}' data-id='{{fatherIndex}}' bindblur='bindblurSAQ'></textarea>
-            <image class='SAQdeleteIcon' src='{{deletePath1}}' mode='widthFix' bindtap='deleteSAQ' data-id='{{fatherIndex}}'></image>
-          </view>
-          <textarea auto-height='true' class = "SAQAnswer" value='{{item.content.answer}}' bindblur='bindblurAnswerOfSAQ' data-id='{{fatherIndex}}'></textarea>
-        </view>
-      </block>
+    <picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap'      bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><button>{{startDate}}</button></picker>
+  </view>
+    <button class="weui-btn" type="primary" bindtap='showP'>发布任务</button>
     </view>
-
-    <button class="weui-btn" type="primary" bindtap='showQ'>提交问卷</button>
-
-
-
-</scroll-view>
-</swiper-item>
-
-
-<!-- 跑腿 -->
-<swiper-item>
-<scroll-view  scroll-y="true" style='height: 100%'>
-
-
-
-    <button class="weui-btn" type="primary" bindtap='showQ'>提交跑腿</button>
-</scroll-view>
+      </view>
+  </scroll-view>
 </swiper-item>
 
 
 
 <!-- 3 -->
 <swiper-item>
-<scroll-view  scroll-y="true" style='height: 100%'>
+<scroll-view scroll-y="true" style='height: 100%' >
+  <view id="sv">
+  <view id="obody">
   
-    <button class="weui-btn" type="primary" bindtap='showQ'>提交</button>
-</scroll-view>
+<view class='father_view'>
+      <view class="t_title_con"><text class="t_title">发布新分享任务</text></view>
+      <view class='son_view'>
+    
+        <view class="title-bg">任务题目</view>
+        <textarea  maxlength="12" class="textarea-bg" placeholder="请输入内容" bindinput ="_00Input" auto-height />
+    
+      </view>
+    
+    <view class='son_view'>
+    
+        <view class="title-bg">任务描述</view>
+        <textarea class="textarea-bg" placeholder="请输入内容"  bindinput ="_01Input"  auto-height/>
+    
+    </view>
+
+    <view class='son_view'>
+  
+      <view class="title-bg">任务报酬（每人）💰</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_02Input" auto-height />
+  
+    </view>
+    <view class='son_view'>
+  
+      <view class="title-bg">问卷人数🧑</view>
+      <textarea class="textarea-bg" placeholder="请输入内容" type="number" bindinput ="_03Input" auto-height />
+  
+      </view>
+
+
+    <picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap'      bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"><button>{{startDate}}</button></picker>
+  </view>
+    <button class="weui-btn" type="primary" bindtap='showF'>发布任务</button>
+    </view>
+      </view>
+  </scroll-view>
 </swiper-item>
 
-
-
-
-
-<!--4-->
-<swiper-item>
-<scroll-view  scroll-y="true" style='height: 100%'>
-
-
-    <button class="weui-btn" type="primary" bindtap='showQ'>提交</button>
-</scroll-view>
-</swiper-item>
 
 
 
 
 </swiper>
+
+</view>

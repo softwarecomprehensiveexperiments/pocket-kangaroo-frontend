@@ -1,6 +1,6 @@
 /*切换栏*/
 .swiper-tab {
-  background: #F2EADA;
+  background: ffffff;
   display: flex;
   position: relative;
   z-index: 2;

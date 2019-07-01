@@ -22,7 +22,7 @@ Page({
     addIconPath: "../../icons/addIcon.png",
     currentFatherIndex: 0,
     questionnaireArray: [
-      { "type": "SCQ", "content": { "description": "单选", "options": [{ "id": 1, "name": "", "isSelected": false }, ] }   }, 
+      { "type": "SCQ", "content": { "description": "", "options": [{ "id": 1, "name": "", "isSelected": false }, ] }   }, 
     ],
     currtab: 0,
     swipertab: [
@@ -105,10 +105,10 @@ Page({
       var temp0 = {
         "type": "SCQ",
         "content": {
-          "description": "单选",
+          "description": "",
           "options":
             [
-              { "id": 1, "name": "请输入问题", "isSelected": false },
+              { "id": 1, "name": "", "isSelected": false },
             ]
         }
       };
@@ -118,10 +118,10 @@ Page({
       var temp0 = {
         "type": "MCQ",
         "content": {
-          "description": "多选",
+          "description": "",
           "options":
             [
-              { "id": 1, "name": "请输入问题", "isSelected": false },
+              { "id": 1, "name": "", "isSelected": false },
             ]
         }
       };
@@ -143,25 +143,17 @@ Page({
 
   deleteSCQ: function (input) {
     var tempIndex = input.currentTarget.dataset.id;
-    console.log(tempIndex);
+    console.log('222');
+    console.log(tempArray);
     var tempArray = this.data.questionnaireArray;
     tempArray.splice(tempIndex, 1);
+    console.log(tempArray);
     this.setData({
       questionnaireArray: tempArray,
     });
   },
 
   deleteMCQ: function (input) {
-    var tempIndex = input.currentTarget.dataset.id;
-    console.log(tempIndex);
-    var tempArray = this.data.questionnaireArray;
-    tempArray.splice(tempIndex, 1);
-    this.setData({
-      questionnaireArray: tempArray,
-    });
-  },
-
-  deleteSAQ: function (input) {
     var tempIndex = input.currentTarget.dataset.id;
     console.log(tempIndex);
     var tempArray = this.data.questionnaireArray;
@@ -182,9 +174,9 @@ Page({
   deleteOneOfSCQ: function (input) {
     var tempFatherIndex = this.data.currentFatherIndex;
     var tempSonIndex = input.target.dataset.id;
-    //console.log(tempSonIndex);
+    console.log(tempSonIndex);
+    console.log("hah");
     var tempArray = this.data.questionnaireArray;
-    //console.log(tempArray[tempFatherIndex].content.options[tempSonIndex]);
     tempArray[tempFatherIndex].content.options.splice(tempSonIndex, 1);
     this.setData({
       questionnaireArray: tempArray,
@@ -194,10 +186,7 @@ Page({
   deleteOneOfMCQ: function (input) {
     var tempFatherIndex = this.data.currentFatherIndex;
     var tempSonIndex = input.target.dataset.id;
-    // console.log('tempFatherIndex: ' + tempFatherIndex);
-    // console.log('tempSonIndex: ' + tempSonIndex);
     var tempArray = this.data.questionnaireArray;
-    // console.log(tempArray[tempFatherIndex].content.options[tempSonIndex]);
     tempArray[tempFatherIndex].content.options.splice(tempSonIndex, 1);
     this.setData({
       questionnaireArray: tempArray,
@@ -241,6 +230,9 @@ Page({
     var tempFatherIndex = this.data.currentFatherIndex;
     var tempSonIndex = input.target.dataset.id;
     var tempArray = this.data.questionnaireArray;
+    console.log(tempArray)
+    console.log(tempSonIndex)
+    console.log('---------')
     tempArray[tempFatherIndex].content.options[tempSonIndex].name = input.detail.value;
     this.setData({
       questionnaireArray: tempArray,
@@ -767,15 +759,113 @@ Page({
 
       }
  })
-
-
-
-
-
-    console.log(this.data.questionnaireArray)
-    console.log(this.data.text);
-
   },
 
+  showP: function () {
+    this.data.text = this.getcomm(this.data.questionnaireArray);
+
+    wx.request({
+      url: 'http://118.89.117.52/task',
+      method: 'POST',
+      data: {
+        task_title: this.data.title,
+        task_description: this.data.des,
+        task_type: 0,
+        task_price: parseInt(this.data.money),
+        max_receivers_count: this.data.renshu,
+        task_deadline: this.data.startDate,
+      },
+
+      header: {
+        //'authorization': wx.getStorageSync("token")
+        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.statusCode == 200) {
+          if (res.data.success == true) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000,
+
+            })
+
+          }
+          else {
+            wx.showToast({
+              title: res.data.description,
+              icon: 'loading',
+              duration: 500
+
+            })
+
+          }
+        }
+        else {
+          console.log("alogin.js wx.request" + res.statusCode);
+        }
+      },
+      fail: function () {
+        console.log("alogin.js wx.request CheckCallUser fail");
+      },
+      complete: function () {
+
+      }
+    })
+  },
+  showF: function () {
+    this.data.text = this.getcomm(this.data.questionnaireArray);
+
+    wx.request({
+      url: 'http://118.89.117.52/task',
+      method: 'POST',
+      data: {
+        task_title: this.data.title,
+        task_description: this.data.des,
+        task_type: 1,
+        task_price: parseInt(this.data.money),
+        max_receivers_count: this.data.renshu,
+        task_deadline: this.data.startDate,
+      },
+
+      header: {
+        //'authorization': wx.getStorageSync("token")
+        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.statusCode == 200) {
+          if (res.data.success == true) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000,
+
+            })
+
+          }
+          else {
+            wx.showToast({
+              title: res.data.description,
+              icon: 'loading',
+              duration: 500
+
+            })
+
+          }
+        }
+        else {
+          console.log("alogin.js wx.request" + res.statusCode);
+        }
+      },
+      fail: function () {
+        console.log("alogin.js wx.request CheckCallUser fail");
+      },
+      complete: function () {
+
+      }
+    })
+  },
 
 })

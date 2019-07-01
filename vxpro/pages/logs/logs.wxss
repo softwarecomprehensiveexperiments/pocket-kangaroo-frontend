@@ -31,17 +31,22 @@
 }
 
 #title{
-  display: flex;
-  flex-direction: row;
   border-radius: 30rpx 30rpx 30rpx 30rpx;
 }
 
 .titleContent{
+  width: fit-content;
   justify-items: center;
+}
+
+.titleContent1{
+  display: flex;
 }
 
 .priceContent{
   margin-left: auto;
+  height: fit-content;
+  width: fit-content;
 }
 
 .SCQOption{

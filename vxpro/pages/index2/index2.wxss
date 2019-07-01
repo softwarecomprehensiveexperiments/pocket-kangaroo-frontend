@@ -2,19 +2,40 @@ page{
   height: 100%;
 }
 
-/* .divLine{
- background: #E0E3DA;
- width: 100%;
- height: 5rpx;
- margin-top: 20rpx;
-} */
+
+#bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #FFD343;
+}
+
+#sv {
+  display: flex;
+  margin: 35rpx 0px;
+  justify-content: center;
+}
+
+#obody {
+  width: 80%;
+  height:fit-content;
+  display: flex;
+  justify-content: center;
+  flex-direction:column;
+  background-color: #ffffff;
+  border-radius: 30rpx 30rpx 30rpx 30rpx;
+  padding: 18px;
+}
+
+.addNewQuestionbg{
+  display: flex;
+  justify-content: center;
+}
 
 .addNewQuestion{
-  position: fixed;
   width: 80rpx;
   height: 80rpx;
-
-
+  margin-top: 10px;
 }
 
 #title{
@@ -24,15 +45,23 @@ page{
   color:#D4D4D4;
 }
 
-#request{
-  height: 15%;
-  color:#D4D4D4;
-  border: 1rpx solid #999;
+.SCQselectIcon{
+  width: 60rpx;
+}
+
+.MCQselectIcon{
+  width: 60rpx;
 }
 
 
-.SCQselectIcon{
-  width: 60rpx;
+
+
+.swiper-box {
+  height: 100%; 
+}
+
+.swiper-box2 {
+  height: 100%;
 }
 
 .SCQOption{
@@ -42,35 +71,23 @@ page{
   align-items: center;
 }
 
-.MCQselectIcon{
-  width: 60rpx;
-}
-.SCQ{
-  padding: 20rpx;
-  border: 2rpx dashed #999;
-}
 .SCQText{
   margin-left: 20rpx;
   /* color: #E3E3E3; */
   border: 2rpx solid #999;
   width: 80%;
+  padding: 10rpx;
 }
-.MCQ{
-  padding: 20rpx;
-  border: 2rpx dashed #999;
-}
+
 
 .MCQText{
   margin-left: 20rpx;
   /* color: #E3E3E3; */
   border: 2rpx solid #999;
   width: 80%;
+  padding: 10rpx;
 }
 
-.SAQ{
-  padding: 20rpx;
-    border: 2rpx dashed #999;
-}
 
 .SCQTitle{
   display: flex;
@@ -82,10 +99,6 @@ page{
   flex-direction: row;
 }
 
-.SAQTitle{
-  display: flex;
-  flex-direction: row;
-}
 
 .MCQOption{
   display: flex;
@@ -94,83 +107,98 @@ page{
   align-items: center;
 }
 
-.SAQAnswer{
-  border: 2px solid #999;
-}
-
 .SCQDiscription{
   border: 2rpx solid #999;
-  width: 70%;
+  width: 75%;
+  padding: 10rpx;
 }
 
 .MCQDiscription{
   border: 2rpx solid #999;
-  width: 70%;
+  width: 75%;
+  padding: 10rpx;
 }
 
-.SAQDiscription{
+textarea {
+  width: calc(100% - 34rpx);
+  height: 500rpx;
+  font-size: 32rpx;
   border: 2rpx solid #999;
-  width: 70%;
+  padding: 15rpx;
 }
+ 
+.textarea-bg {
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+ 
+.title-bg {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.out {
+  padding: 26rpx;
+  margin-top: 20rpx;
+  width: calc(100% - 46rpx);
+  border: 1rpx solid #dfdfdf;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .SCQdeleteIcon{
-  width: 80rpx;
-  margin-left: 20rpx;
+  width: 50rpx;
+  margin-left: auto;
 }
 
 .MCQdeleteIcon{
-  width: 80rpx;
-  margin-left: 20rpx;
+  width: 50rpx;
+  margin-left: auto;
 }
 
 .SCQdeleteIcon1{
-  width: 60rpx;
-  margin-left: 20rpx;
+  width: 50rpx;
+  margin-left: auto;
 }
 
 .MCQdeleteIcon1{
-  width: 60rpx;
-  margin-left: 20rpx;
-}
-
-.SAQdeleteIcon{
-  width: 60rpx;
-  margin-left: 50rpx;
+  width: 50rpx;
+  margin-left: auto;
 }
 
 .SCQaddIcon1{
-  width:60rpx;
-  margin-left: 20rpx;
+  width:50rpx;
 }
 
 .MCQaddIcon1{
-  width:60rpx;
-  margin-left: 20rpx;
-}
-
-#body{
-  margin-top: 100rpx;
+  width:50rpx;
 }
 
 .weui-btn{
-  width: 50%;
+  width: 35%;
+  margin-top: 10rpx;
   margin-bottom: 20rpx;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
 .swiper-tab {
-  background: #f2eada;
+  background: ffffff;
   display: flex;
   position: relative;
   z-index: 2;
@@ -181,6 +209,23 @@ page{
   color: #281f1d
 
 }
+
+.t_title_con {
+  display: flex;
+  font-size: 30px;
+  justify-content: center;
+  flex-direction:row;
+  color: #1AAD19;
+}
+ 
+
+#q_title_con {
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+  flex-direction:row;
+  color: #1AAD19;
+}
  
 .swiper-tab-list {
   margin: 0 45px;
@@ -188,7 +233,7 @@ page{
   font-size: 17px;
   align-content: center;
 }
- 
+
 .on {
   border-bottom:2rpx solid #FFCC33;
 }
@@ -224,37 +269,10 @@ page{
   flex: 1;
 }
 
-
-
-
-
-
-
-
-textarea {
-  width: 700rpx;
-  height: 500rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  margin-top: 10rpx;
+.time-picker {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
- 
-.textarea-bg {
-  background-color: #999;
-  padding: 10rpx;
-  font-size: 32rpx;
-}
- 
-.title-bg {
-  font-size: 32rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  margin-top: 10rpx;
-  color: #43c729;
-}
-
-
-
 
 
 

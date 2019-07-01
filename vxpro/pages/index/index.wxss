@@ -11,6 +11,11 @@
   color: #281f1d
 
 }
+page{
+  height: 100%;
+}
+
+
  .slide-image {
    width:100%;
  }

@@ -9,9 +9,10 @@
     <view class="t_uni_con"><text style='color:#7a7070'>问题总数：</text><text id="t_pcnt">{{task.questionnaire.length}}</text></view>
     <view class="t_uni_con"><text style='color:#7a7070'>剩余领取：</text><text id="t_pcnt" style='color:red'>{{task.max_receivers_count-task.current_receivers_count}}</text><text> 人（总 </text><text id="t_pcnt" style='color:#38a52c'>{{task.max_receivers_count}}</text><text> 人）</text></view>
     <view class="t_uni_con"><text style='color:#7a7070'>报酬：</text><text id="t_pcnt" style='color:#ffcc33'>{{task.task_price}}</text><text> 💰</text></view>
-    <view class="t_uni_con"><text style='color:#7a7070'>截止到：</text><text id="t_dead">{{task.task_deadline}}</text></view>
     <view class="t_uni_con"><text style='color:#7a7070'>发布时间：</text><text id="t_dead">{{task.task_release_time}}</text></view>
+    <view class="t_uni_con"><text style='color:#7a7070'>截止到：</text><text id="t_dead" style='color:red;'>{{task.task_deadline}}</text></view>
     <view class="t_uni_con">
+
       <text style='color:#7a7070'>当前状态：</text>
       <text wx:if="{{task.task_state_code==0 || task.task_state_code==1 || task.task_state_code==2}}" style='color:rgb(236, 197, 78)'>{{task.state}}</text>
       <text wx:elif="{{task.task_state_code==3}}" style='color:#1AAD19;'>{{task.state}}</text>

@@ -10,6 +10,12 @@
     <!-- 接收 -->
     <swiper-item>
       <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+      <view style="display: flex;align-items:center;height:100%;" wx:if='{{tasks.length==null||tasks.length==0}}'>
+         <view style='width:100%;'>
+         <view style='display: flex;width:100%;justify-content: center;font-size:20px;color:#bababa;'><image src='../../icons/box.png' style='width:300px;height:300px;' mode='widthFix'></image></view>
+         <view style='display: flex;width:100%;justify-content: center;font-size:18px;color:#bababa'>这里暂时什么都没有呢</view>
+      </view>
+      </view>
         <view  class="orderDetails" wx:for="{{tasks}}" wx:key=" ">
           <view class="orderListTitle">
             <text class="userName" style='color:#3B3B3B;'>{{item.publisher_name}}</text>
@@ -23,8 +29,8 @@
       <text class="orderStatus" wx:elif="{{item.transaction_state_code==3 || item.transaction_state_code==4 || item.transaction_state_code==5}}" style='color:red;'>{{item.state}}</text>
           </view>
           <view style='height: 1px; background:#eaeaea;'></view>
-          <view class = 'tbody'>
-            <view class = 'main' bindtap='transDiscrib' data-transaction_id='{{item.transaction_id}}'>
+          <view class = 'tbody' bindtap='transDiscrib' data-transaction_id='{{item.transaction_id}}'>
+            <view class = 'main'>
               <view class="productInfo" >
                 <view class="title">{{item.task_title}}</view>
                 <text class="des">{{item.task_short_description}}</text>
@@ -47,6 +53,12 @@
   <!-- 发布 -->
  <swiper-item>
       <scroll-view class="hot-box" scroll-y="true" style='height: 100%'>
+      <view style="display: flex;align-items:center;height:100%;" wx:if='{{tasks1.length==null||tasks1.length==0}}'>
+         <view style='width:100%;'>
+         <view style='display: flex;width:100%;justify-content: center;font-size:20px;color:#bababa;'><image src='../../icons/box.png' style='width:300px;height:300px;' mode='widthFix'></image></view>
+         <view style='display: flex;width:100%;justify-content: center;font-size:18px;color:#bababa'>这里暂时什么都没有呢</view>
+      </view>
+      </view>
         <view  class="orderDetails" wx:for="{{tasks1}}" wx:key=" ">
           <view class="orderListTitle">
             <text class="userName" style='color:#3B3B3B;'>我</text>

@@ -34,7 +34,7 @@ Page({
             })
             console.log(res.data.result.tasks)
             that.setData({
-              tasks: res.data.result.transactions
+              tasks: res.data.result.transactions.reverse()
             })
             console.log(that.data);
           }
@@ -77,7 +77,7 @@ Page({
             })
             console.log(res.data.result.tasks)
             that.setData({
-              tasks1: res.data.result.tasks
+              tasks1: res.data.result.tasks.reverse()
             })
             console.log(that.data);
           }
