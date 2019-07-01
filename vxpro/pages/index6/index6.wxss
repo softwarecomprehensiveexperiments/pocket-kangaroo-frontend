@@ -11,24 +11,53 @@
  background-color:  #FFCC00;
 
 }
+.inputText { 
+
+ flex: block; 
+
+ float: right; 
+
+ text-align: right; 
+
+ margin-right: 22px; 
+
+ margin-top: 11px; 
+
+ color: #cccccc; 
+
+ font-size: 14px
+
+}
 
 .yue2{
   font-size:25px;
   margin-top:70px;
-  margin-left:40%
+  margin-left:35%
 }
 
-.chongzhi{
- height: 30px;
- width:40px;
 
+.loginBtnView { 
 
- margin-left:140px;
+ width: 100%; 
 
- background-color:  #fff; 
+ height: auto; 
 
- border-style : solid;
+ background-color: #f2f2f2; 
 
- border-color:#FFCC56;
+ margin-top: 0px; 
+
+ margin-bottom: 0px; 
+
+ padding-bottom: 0px; 
+
+} 
+
+.loginBtn { 
+
+ width: 80%; 
+
+ background-color:#ffcc33;
+
+ margin-top: 35px; 
 
 }

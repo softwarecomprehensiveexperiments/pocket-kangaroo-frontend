@@ -2,6 +2,15 @@ Page({
   data:{
     amount:''
   },
+  phoneInput: function (e) {
+
+    this.setData({
+
+      amount: e.detail.value
+
+    })
+
+  },
   onLoad:function(options){
     var that = this
     wx.getStorage({
@@ -15,15 +24,17 @@ Page({
     })
   },
   chongzhi:function(){
+    var that = this
     wx.request({
       url: 'http://118.89.117.52/user/credit',
+      data:{amount: this.data.amount},
       method: 'POST',
       header: {
-        //'authorization': wx.getStorageSync("token")
-        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJLYW5nYXJvbyBCYWNrdXAiLCJpYXQiOjE1NjExMzE0OTAxNzcsImV4cCI6MTU2MzcyMzQ5MDE3NywidXNlcklkIjoxLCJqd3RJZCI6MX0.qDg34GTZYjr_OKXHPJirdznEKPzya_TYL4Gulvnqgfo'
+        'authorization': wx.getStorageSync("token")
+        
       },
       success: function (res) {
-        var that=this
+      
         console.log(res.data)
         if (res.statusCode == 200) {
           if (res.data.success == true) {
@@ -32,7 +43,9 @@ Page({
               icon: 'success',
               duration: 1000
             })
-            that.setData({ amount: res.data.result.amount })
+        
+            wx.setStorageSync('usermoney', parseInt(wx.getStorageSync('usermoney')) + parseInt(that.data.amount))
+          that.onLoad()
           }
           else {
             wx.showToast({

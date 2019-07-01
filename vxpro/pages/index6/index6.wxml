@@ -1,2 +1,3 @@
 <view class="yue"><text class="yue2">余额  {{user_properties}}  元</text></view>
-<botton class="chongzhi" bindtap="chongzhi">充值</botton>
+<input class="inputText" placeholder="请输入充值金额" bindinput="phoneInput" /> 
+<button class="loginBtn"  size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="chongzhi">充值</button>
