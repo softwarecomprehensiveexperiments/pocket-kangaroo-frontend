@@ -7,9 +7,7 @@
 
  <view class="myInfo"> 
 
-  <view class="myIcon" >{{user_icon}}</view>
 
-  <text class="myName1">{{user_id}}</text> 
 
   <view  class = "navi" bindtap="userinfo">个人信息<view class='arrow'></view></view>
 
